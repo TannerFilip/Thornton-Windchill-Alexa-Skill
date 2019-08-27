@@ -1,8 +1,10 @@
+// borrowed from https://github.com/kevinl95/Thornton-Windchill-Alexa-Skill/blob/master/alexapp.js
+
 exports.handler = function( event, context ) {
 
     var http = require( 'http' );
 
-    var url = 'http://api.openweathermap.org/data/2.5/weather?zip=<YOURZIP>,us&units=imperial&APPID=<YOURAPPID>';
+    var url = 'http://api.kanye.rest/';
 
     http.get( url, function( response ) {
 
@@ -14,17 +16,8 @@ exports.handler = function( event, context ) {
 
             var json = JSON.parse( data );
 
-            var temp = json.main.temp;
-
-            var wind_speed = json.wind.speed;
-
-            var wind_chill = 35.74 + 0.6215*temp - 35.75*Math.pow(wind_speed, 0.16) + 0.4275*temp*Math.pow(wind_speed, 0.16);
-
-            var chill_rounded = Math.round( wind_chill * 10 ) / 10;
-
-            var text = 'Outside with wind chill the temperature feels like ';
-            text+=chill_rounded+" degrees fahrenheit.";
-            output( text, context );
+            var quote = json.quote;
+            output(quote, context);
 
         } );
 
@@ -32,17 +25,14 @@ exports.handler = function( event, context ) {
 
 };
 
-function output( text, context ) {
+function output( quote, context ) {
 
+    var speechWrap1 = "<speak><voice name='Matthew'>";
+    var speechWrap2 = "</voice></speak>";
     var response = {
         outputSpeech: {
-            type: "PlainText",
-            text: text
-        },
-        card: {
-            type: "Simple",
-            title: "Thornton Windchill",
-            content: text
+            "type": "SSML",
+            "ssml": speechWrap1+quote+speechWrap2
         },
         shouldEndSession: true
     };

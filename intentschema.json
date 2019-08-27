@@ -1,0 +1,37 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "kanye quote",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "quote",
+                    "slots": [],
+                    "samples": [
+                        "kanye west",
+                        "kanye",
+                        "kanye quote",
+                        "kanye west quote",
+                        "ask kanye for a quote"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
